@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "start-container": "ng serve --host 0.0.0.0 --poll 2000",
+    "start-container-max-memory": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng serve --host 0.0.0.0"
   },
   "private": true,
   "dependencies": {
