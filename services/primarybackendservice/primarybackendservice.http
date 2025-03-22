@@ -1,6 +1,35 @@
 @primarybackendservice_HostAddress = http://localhost:5058
 
-GET {{primarybackendservice_HostAddress}}/weatherforecast/
+GET {{primarybackendservice_HostAddress}}/api/workitem
 Accept: application/json
 
 ###
+
+GET {{primarybackendservice_HostAddress}}/api/workitem/1
+Accept: application/json
+
+###
+
+POST {{primarybackendservice_HostAddress}}/api/workitem
+Content-Type: application/json
+
+{
+  "title": "Hello World 3",
+  "completed": false
+}
+
+###
+
+PUT {{primarybackendservice_HostAddress}}/api/workitem/3
+Content-Type: application/json
+
+{
+  "title": "New Task 1 (Updated)",
+  "completed": true
+}
+
+###
+
+DELETE {{primarybackendservice_HostAddress}}/api/workitem/1
+Accept: application/json
+
