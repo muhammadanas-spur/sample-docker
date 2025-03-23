@@ -46,9 +46,10 @@ It has the APP_UID non root user. Here is the reasoning why:
 [Andrew Lock's article](https://andrewlock.net/exploring-the-dotnet-8-preview-updates-to-docker-images-in-dotnet-8/)
 
 ``` json
+
 {
-    "ConnectionStrings:Docker-Database": "Host=database;Port=5432;Database=sample_database;Username=postgres;Password=mysecretpassword;",
-    "ConnectionStrings:Database": "Host=localhost;Port=5432;Database=sample_database;Username=sa_ss;Password=dev.123;"
+  //"ConnectionStrings:Docker-Database": "Host=database;Port=5432;Database=sample_database;Username=postgres;Password=mysecretpassword;",
+  "ConnectionStrings:Docker-Database": "Host=host.docker.internal;Port=5500;Database=sample_database;Username=postgres;Password=mysecretpassword;",
 }
 
     "Container (Dockerfile)": {
@@ -64,6 +65,21 @@ It has the APP_UID non root user. Here is the reasoning why:
       "httpPort": 5058,
       "sslPort": 7111
     },
+
+
+        "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/weatherforecast",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASPNETCORE_HTTPS_PORTS": "8081",
+        "ASPNETCORE_HTTP_PORTS": "8080"
+      },
+      "publishAllPorts": true,
+      "useSSL": true,
+      "httpPort": 5264,
+      "sslPort": 7046
+    }
 ```
 
 ```powershell
