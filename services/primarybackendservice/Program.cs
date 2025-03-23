@@ -17,9 +17,9 @@ public class Program
 
         builder.Services.AddDbContext<WorkDbContext>(options =>
         {
-            options.UseSqlite("Data Source=../databse.dat");
+            //options.UseSqlite("Data Source=../databse.dat");
 
-            //options.UseNpgsql(builder.Configuration.GetConnectionString("Docker-Database"));
+            options.UseNpgsql(builder.Configuration.GetConnectionString("Docker-Database"));
 
             //Use SQL Server
             //options.UseSqlServer(builder.Configuration.GetConnectionString("SQL_Server_Database"));

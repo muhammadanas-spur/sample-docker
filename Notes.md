@@ -50,4 +50,22 @@ It has the APP_UID non root user. Here is the reasoning why:
     "ConnectionStrings:Docker-Database": "Host=database;Port=5432;Database=sample_database;Username=postgres;Password=mysecretpassword;",
     "ConnectionStrings:Database": "Host=localhost;Port=5432;Database=sample_database;Username=sa_ss;Password=dev.123;"
 }
+
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/weatherforecast",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASPNETCORE_HTTPS_PORTS": "8081",
+        "ASPNETCORE_HTTP_PORTS": "8080"
+      },
+      "publishAllPorts": true,
+      "useSSL": true,
+      "httpPort": 5058,
+      "sslPort": 7111
+    },
+```
+
+```powershell
+docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5500:5432 -v .\seed_script.sql:/docker-entrypoint-initdb.d/seed_script.sql -d postgres:14
 ```
