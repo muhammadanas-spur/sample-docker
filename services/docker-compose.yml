@@ -1,0 +1,30 @@
+services:
+  primarybackendservice:
+    image: ${DOCKER_REGISTRY-}primarybackendservice
+    build:
+      context: .
+      dockerfile: primarybackendservice/Dockerfile
+
+  secondarybackendservice:
+    image: ${DOCKER_REGISTRY-}secondarybackendservice
+    build:
+      context: .
+      dockerfile: secondarybackendservice/Dockerfile
+  database:
+    image: ${DOCKER_REGISTRY-}datbase
+    build:
+      context: .
+      dockerfile: database.Dockerfile
+    environment:
+     # - POSTGRES_DB=sample_database
+     # - POSTGRES_USER=postgres
+     - POSTGRES_PASSWORD=mysecretpassword
+    volumes:
+     - ./container-storage/pg_data:/var/lib/postgresql/data
+     # - my_new_pg_data:/var/lib/postgresql/data
+    ports:
+     - 5500:5432
+
+# volumes:
+    # redis-data-volume:
+    # my_new_pg_data:
