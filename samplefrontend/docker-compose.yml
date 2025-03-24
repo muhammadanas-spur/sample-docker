@@ -1,0 +1,15 @@
+services:
+  samplefrontend:
+    image: ${DOCKER_REGISTRY-}samplefrontend
+    build:
+      context: .
+      target: development
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    volumes:
+      - .:/app
+      - samplefrontend_nodemodules:/app/node_modules
+
+volumes:
+  samplefrontend_nodemodules:
